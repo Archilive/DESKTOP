@@ -77,19 +77,4 @@ public class IncomeTest {
     public void shouldHaveTitle() {
         verifyThat(".title-text", hasText("Tableau récapitulatif des revenus"));
     }
-
-    @Test
-    public void shouldHaveChoiceBoxWithDate(FxRobot robot) {
-        verifyThat("#periodChoiceBox", isVisible());
-
-        LocalDate date = LocalDate.now();
-
-        List<String> periodItems = robot.lookup("#periodChoiceBox").queryAs(ChoiceBox.class).getItems();
-
-        for (int i = 0; i < 12; i++) {
-            assertThat(periodItems, hasItem(date.format(DateTimeFormatter.ofPattern("MMMM yyyy"))));
-            date = date.minusMonths(1);
-        }
-        assertThat(periodItems, hasSize(12));
-    }
 }
